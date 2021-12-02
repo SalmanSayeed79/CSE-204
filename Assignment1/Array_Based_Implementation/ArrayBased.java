@@ -1,7 +1,4 @@
 package Assignment1.Array_Based_Implementation;
-
-import java.util.Scanner;
-
 /** Array-based list implementation */
 public class ArrayBased<E> implements ArrayInterface<E> {
     private static final int defaultSize = 10; // Default size

@@ -1,6 +1,7 @@
 package Assignment1.Printing;
-import Assignment1.Array_Based_Implementation.ArrayBased;
 import java.util.Scanner;
+
+import Assignment1.Array_Based_Implementation.ArrayBased;
 
 public class Printing {
     public static void main(String args[]) {

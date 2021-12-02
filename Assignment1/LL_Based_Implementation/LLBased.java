@@ -2,6 +2,8 @@ package Assignment1.LL_Based_Implementation;
 
 import java.util.Scanner;
 
+import Assignment1.LL_Based_Implementation.LL_Interface;
+
 class LLBased<E> implements LL_Interface<E>{
     private LList<E> head;
     private LList<E> tail;
