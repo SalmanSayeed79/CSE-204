@@ -41,12 +41,16 @@ class ArrayBasedStack<E> implements StackInterface<E> {
         assert top != 0 : "Stack is empty";
         if(direction==-1){
             reversePop();
+            return null;
         }
         return listArray[--top];
     }
     /** @return Top element */
     public E topValue() {
         assert top != 0 : "Stack is empty";
+        if(top==0) {
+            return null;
+        }
         return listArray[top-1];
     }
     /** @return Stack size */
@@ -54,10 +58,13 @@ class ArrayBasedStack<E> implements StackInterface<E> {
         return top; 
     }
     public void setDirection(int value){
-        if(top>0) return;
+        if(top!=0) {
+            System.out.println("Stack not empty");
+            return;
+        }
         
         direction=value;
-        if(value==-1) top=maxSize-1;
+        if(value==-1) top=maxSize;
         else top=0;
         
     }
@@ -83,7 +90,7 @@ class ArrayBasedStack<E> implements StackInterface<E> {
             System.out.println("LimitExceeded");
         }
         else{
-            listArray[top--]=value;
+            listArray[--top]=value;
         }
     }
     public E reversePop(){

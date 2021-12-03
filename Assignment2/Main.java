@@ -24,7 +24,7 @@ public class Main {
     Scanner consoleInput = new Scanner(System.in);
 
     int size = consoleInput.nextInt();
-    LLBasedStack<Integer> currentStack=new LLBasedStack<Integer>(size);
+    ArrayBasedStack<Integer> currentStack=new ArrayBasedStack<Integer>(size);
     for(int i = 0;i<size;i++)
     {
         int value=consoleInput.nextInt();
@@ -83,6 +83,7 @@ public class Main {
                 System.out.println("-1");
                 break;
             }
+            
             
         }
     }
