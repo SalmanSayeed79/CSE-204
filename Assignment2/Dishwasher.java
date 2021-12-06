@@ -16,8 +16,8 @@ public class Dishwasher {
         // Time wash
         // course no
 
-        ArrayBasedStack<Integer> dirtyStack=new ArrayBasedStack<Integer>(invitees*courses);
-        ArrayBasedStack<Integer> cleanStack=new ArrayBasedStack<Integer>(invitees*courses);
+        ArrayBasedStack<Object> dirtyStack=new ArrayBasedStack<Object>(invitees*courses);
+        ArrayBasedStack<Object> cleanStack=new ArrayBasedStack<Object>(invitees*courses);
         Object [] inviteeStackArray=new Object[invitees];
         for(int i=0;i<invitees;i++){
             inviteeStackArray[i]=new ArrayBasedStack<Integer>(courses);
@@ -26,7 +26,14 @@ public class Dishwasher {
             int inviteeNumber=consoleScanner.nextInt();
             int time=consoleScanner.nextInt();
             int courseNumber=consoleScanner.nextInt();
+            //Exiting at 0 0 0
+            if(inviteeNumber==0 && time==0 && courseNumber==0) break;
 
+            int [] time_courseTime_Tuple=new int[2];
+            time_courseTime_Tuple[0]=time;
+            time_courseTime_Tuple[1]=washTime[courseNumber-1];
+            
+            dirtyStack.push(time_courseTime_Tuple);
             switch(inviteeNumber){
                 case 1:
                     ((ArrayBasedStack<Integer>) inviteeStackArray[0]).push(courseNumber);
@@ -39,10 +46,14 @@ public class Dishwasher {
                     break;
                 
             }
-            if(inviteeNumber==0 && time==0 && courseNumber==0) break;
+            
             
         }
-
+        System.out.println("Dirty Stack");
+        System.out.println(dirtyStack);
+        //=========================================
+        //Checking who ate the full meal
+        //=========================================
         int fullCourseEatenCount=0;
         int []fullCourseEatenArray=new int[invitees];
         //Checking which courses are full
