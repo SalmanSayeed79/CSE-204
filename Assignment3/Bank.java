@@ -70,7 +70,7 @@ public class Bank {
         Customer queue1CurrentCustomer;
         Customer queue2CurrentCustomer;
         //|| queue1Active || queue2Active
-        while((queue1.length()!=0 || queue2.length()!=0) || allCustomers.length()!=0 ){
+        while((queue1.length()!=0 || queue2.length()!=0) || allCustomers.length()!=0 || queue1Active || queue2Active){
             //Things I have to do
             //==================================
             /**
@@ -82,25 +82,25 @@ public class Bank {
              */
 
             
-            System.out.println("Inside loop for time "+currentTime);
+            //System.out.println("Inside loop for time "+currentTime);
             int queue1Len=queue1.length();
             int queue2Len=queue2.length();
 
-            System.out.println("Current queue 1 size : "+queue1Len+" Current queue 2 size : "+queue2Len);
+            //System.out.println("Current queue 1 size : "+queue1Len+" Current queue 2 size : "+queue2Len);
             //Pushing customers to the newQueue when a queue is inactive
             if(!queue1Active && queue1Len!=0){
-                //queue1.dequeue();
+            
                 queue1Active=true;
-                System.out.println("Service done in queue 1");
+                //System.out.println("Service done in queue 1");
                 queue1CurrentCustomer=queue1.dequeue();
                 queue1RemainingTime=queue1CurrentCustomer.serviceTime;
-                System.out.println("Current remaining time in queue 1 is "+queue1RemainingTime);
+                //System.out.println("Current remaining time in queue 1 is "+queue1RemainingTime);
                 
             }
             if(!queue2Active && queue2Len!=0){
-                //queue1.dequeue();
+               
                 queue2Active=true;
-                System.out.println("Service done in queue 2");
+                //System.out.println("Service done in queue 2");
                 queue2CurrentCustomer=queue2.dequeue();
                 queue2RemainingTime=queue2CurrentCustomer.serviceTime;
                 
@@ -110,15 +110,15 @@ public class Bank {
             //Pushing the customer to the smaller queue if the time of the customer matches
             if(isInArray(allTimes, currentTime)){
                 Customer nextNewCustomer=allCustomers.dequeue();
-                System.out.println("AllCustomer Decreased now size : "+allCustomers.length());
+                //System.out.println("AllCustomer Decreased now size : "+allCustomers.length());
                 if(nextNewCustomer.enterTime==currentTime){
                     //pushing to the smaller queue
                     if(queue2Len>queue1Len){
-                        System.out.println("Pushing new customer to queue 2");
+                        //System.out.println("Pushing new customer to queue 2");
                     
                         queue1.enqueue(nextNewCustomer);
                     }else{
-                        System.out.println("Pushing new customer to queue 1");
+                        //System.out.println("Pushing new customer to queue 1");
                         queue2.enqueue(nextNewCustomer);
                     }
                 }
@@ -142,29 +142,27 @@ public class Bank {
             currentTime++;
             if(queue1RemainingTime>0) {
                 queue1RemainingTime--;
-                System.out.println("queue1 remaining time : "+queue1RemainingTime);
+                //System.out.println("queue1 remaining time : "+queue1RemainingTime);
             }
             if(queue2RemainingTime>0) queue2RemainingTime--;
             if(queue1RemainingTime==0) queue1Active=false;
             if(queue2RemainingTime==0) queue2Active=false;
 
             //Assigning time to the queue when queue is empty
-            // if(queue1Len==0 && allCustomers.length()==0 && !queue1FullDone ){
-            //     System.out.println("Queue 1 done");
-            //     queue1FullDone=true;
-            //     queue1TotalRunTime=currentTime;
-            // }
-            // if(queue2Len==0 && allCustomers.length()==0 && !queue2FullDone){
-            //     System.out.println("Queue 2 done");
-            //     queue2FullDone=true;
-            //     queue2TotalRunTime=currentTime;
-            // }
+            if(queue1Len==0 && allCustomers.length()==0 && queue1FullDone==false ){
+                //System.out.println("Queue 1 done");
+                queue1FullDone=true;
+                queue1TotalRunTime=currentTime+queue1RemainingTime-1;
+            }
+            if(queue2Len==0 && allCustomers.length()==0 && queue2FullDone==false){
+                //System.out.println("Queue 2 done");
+                queue2FullDone=true;
+                queue2TotalRunTime=currentTime+queue2RemainingTime-1;
+            }
 
         }
-        int totalTime1=currentTime+queue1RemainingTime-1;
-        int totalTime2=currentTime+queue2RemainingTime-1;
-        System.out.println("Booth 1 finished at t = "+totalTime1);
-        System.out.println("Booth 2 finished at t = "+totalTime2);
+        System.out.println("Booth 1 finishes service at t = "+queue1TotalRunTime);
+        System.out.println("Booth 2 finishes service at t = "+queue2TotalRunTime);
 
     }
 }
