@@ -1,5 +1,9 @@
 package Assignment3;
 
-public class QueueInterface {
-    
+public interface QueueInterface<E> {
+    public void enqueue(E it);
+    public E dequeue();
+    public E frontValue();
+    public int length();
+    public E rearValue();
 }
