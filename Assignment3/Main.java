@@ -1,11 +1,12 @@
 package Assignment3;
 
+import java.lang.reflect.Array;
 import java.util.Scanner;
 
 public interface Main {
-    public static void printQueue(LLBasedQueue<Integer> printingQueue, int queueSize){
+    public static void printQueue(ArrayBasedQueue<Integer> printingQueue, int queueSize){
         //Hello
-        LLBasedQueue<Integer> tempQueue = new LLBasedQueue<Integer>();
+        ArrayBasedQueue<Integer> tempQueue = new ArrayBasedQueue<Integer>();
         String value="< ";
 
         //Getting value out from the printingQueue and adding to the temp queue
@@ -26,7 +27,7 @@ public interface Main {
         Scanner consoleScanner= new Scanner(System.in);
         int inputSize=consoleScanner.nextInt();
 
-        LLBasedQueue<Integer> mainQueue = new LLBasedQueue<Integer>();
+        ArrayBasedQueue<Integer> mainQueue = new ArrayBasedQueue<Integer>();
         for(int i=0;i<inputSize;i++){
             int input=consoleScanner.nextInt();
             mainQueue.enqueue(input);

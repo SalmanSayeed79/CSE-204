@@ -2,7 +2,7 @@ package Assignment3;
 
 /** Array-based queue implementation */
 class ArrayBasedQueue<E> implements QueueInterface<E> {
-    private static final int defaultSize = 10;
+    private static final int defaultSize = 20;
     private int maxSize; // Maximum size of queue
     private int front; // Index of front element
     private int rear; // Index of rear element
