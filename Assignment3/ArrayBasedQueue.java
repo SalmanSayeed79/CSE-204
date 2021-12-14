@@ -44,9 +44,12 @@ class ArrayBasedQueue<E> implements QueueInterface<E> {
         return listArray[rear];
     }
     public E leaveQueue(){
+   
         E temp= listArray[rear];
         rear--;
         return temp;
+     
+        
     }
     /** @return Queue size */
     public int length(){ 

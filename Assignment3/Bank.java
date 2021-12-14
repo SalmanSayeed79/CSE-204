@@ -113,11 +113,11 @@ public class Bank {
                 if(nextNewCustomer.enterTime==currentTime){
                     //pushing to the smaller queue
                     if(queue2Len>queue1Len){
-                        //System.out.println("Pushing new customer to queue 2");
+                        System.out.println("Pushing new customer to queue 2");
                     
                         queue1.enqueue(nextNewCustomer);
                     }else{
-                        //System.out.println("Pushing new customer to queue 1");
+                        System.out.println("Pushing new customer to queue 1");
                         queue2.enqueue(nextNewCustomer);
                     }
                 }
@@ -126,15 +126,19 @@ public class Bank {
 
             //Switching customers
             if(queue1Len>queue2Len){
-                System.out.println("Switched a customer to queue 2");
-                Customer movingCustomer=queue1.leaveQueue();
-                queue2.enqueue(movingCustomer);
+                if(queue1.length()>=1){
+                    System.out.println("Switched a customer to queue 2");
+                    Customer movingCustomer=queue1.leaveQueue();
+                    queue2.enqueue(movingCustomer);
+                }
+                
             }
             if(queue2Len>queue1Len){
+                if(queue2.length()>=1){
                 System.out.println("Switched a customer to queue 1");
                 Customer movingCustomer=queue2.leaveQueue();
                 queue1.enqueue(movingCustomer);
-    
+                }
             }
             
             //Changing all the times
