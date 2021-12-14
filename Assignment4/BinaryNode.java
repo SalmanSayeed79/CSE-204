@@ -9,21 +9,28 @@ public class BinaryNode<E> {
 
     public BinaryNode(E data){
         this.data=data;
-        leftChildExists=false;
-        rightChildExists=false;
+        this.leftChildExists=false;
+        this.rightChildExists=false;
+    }
+    public BinaryNode(E data, BinaryNode<E> left, BinaryNode<E> right){
+        this.data=data;
+        this.leftChildExists=true;
+        this.rightChildExists=true;
+        this.leftChild=left;
+        this.rightChild=right;
     }
     public void setLeftChild(BinaryNode<E> node){
-        leftChildExists=true;
-        leftChild=node;
+        this.leftChildExists=true;
+        this.leftChild=node;
     }
     public void setRightChild(BinaryNode<E> node){
-        rightChildExists=true;
+        this.rightChildExists=true;
         this.rightChild=node;
     }
     public void removeLeftChild(){
-        leftChildExists=false;
+        this.leftChildExists=false;
     }
     public void removeRightChild(){
-        rightChildExists=false;
+        this.rightChildExists=false;
     }
 }
