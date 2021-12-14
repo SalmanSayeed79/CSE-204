@@ -43,6 +43,11 @@ class ArrayBasedQueue<E> implements QueueInterface<E> {
         assert length() != 0 : "Queue is empty";
         return listArray[rear];
     }
+    public E leaveQueue(){
+        E temp= listArray[rear];
+        rear--;
+        return temp;
+    }
     /** @return Queue size */
     public int length(){ 
         return ((rear+maxSize) - front + 1) % maxSize; 

@@ -20,7 +20,6 @@ public class Bank {
         return false;
     }
 
-
     public static void showCustomerQueue(LLBasedQueue<Customer> printingQueue, int queueSize){
         LLBasedQueue<Customer> tempQueue= new LLBasedQueue<Customer>(printingQueue.length());
         String enterString="Enter Times : ";
@@ -41,9 +40,9 @@ public class Bank {
         Scanner consoleScanner= new Scanner(System.in);
         int customerCount= consoleScanner.nextInt();
 
-        LLBasedQueue<Customer> allCustomers= new LLBasedQueue<Customer>();
-        LLBasedQueue<Customer> queue1= new LLBasedQueue<Customer>();
-        LLBasedQueue<Customer> queue2= new LLBasedQueue<Customer>();
+        ArrayBasedQueue<Customer> allCustomers= new ArrayBasedQueue<Customer>();
+        ArrayBasedQueue<Customer> queue1= new ArrayBasedQueue<Customer>();
+        ArrayBasedQueue<Customer> queue2= new ArrayBasedQueue<Customer>();
 
         int [] allTimes=new int[customerCount];
         //Adding all customers to the list
@@ -126,17 +125,17 @@ public class Bank {
             
 
             //Switching customers
-            // if(queue1Len>queue2Len){
-            //     System.out.println("Switched a customer to queue 2");
-            //     Customer movingCustomer=queue1.dequeue();
-            //     queue2.enqueue(queue1.rearValue());
-            // }
-            // if(queue2Len>queue1Len){
-            //     System.out.println("Switched a customer to queue 1");
-            //     Customer movingCustomer=queue2.dequeue();
-            //     queue1.enqueue(movingCustomer);
+            if(queue1Len>queue2Len){
+                System.out.println("Switched a customer to queue 2");
+                Customer movingCustomer=queue1.leaveQueue();
+                queue2.enqueue(movingCustomer);
+            }
+            if(queue2Len>queue1Len){
+                System.out.println("Switched a customer to queue 1");
+                Customer movingCustomer=queue2.leaveQueue();
+                queue1.enqueue(movingCustomer);
     
-            // }
+            }
             
             //Changing all the times
             currentTime++;
