@@ -1,5 +1,6 @@
 #include<iostream>
 #include<queue>
+#include<string>
 
 using namespace std;
 
@@ -70,28 +71,22 @@ int main(){
                     //Checking for ladder or snake
                     int ladderfound=0;
                     if(finalPosition[child]!=-1 ){
-                        //cout<<"Ladder found at "<<child<<endl;
-                     
                         q.push(finalPosition[child]);
                         if(distance[finalPosition[child]]==-1){
                             parentof[finalPosition[child]]=child;
                             distance[finalPosition[child]]=distance[child];
-                        }
-                        
-                        ladderfound=1;
-                        
-                        
+                        }  
+                        ladderfound=1;   
                     }
-                   
-                        
-                        if(!ladderfound){
-                            q.push(child);
-                            ladderfound=0;
-                        }
+                    if(!ladderfound){
+                        q.push(child);
+                        ladderfound=0;
+                    }
                     
                     
                 }
             }
+            //cout<<currentBlock<<"-> ";
             q.pop();
         }
         
@@ -99,8 +94,19 @@ int main(){
         //==================================================
         // Printing the path of the movement
         //==================================================
+       
         if(distance[boardSize]!=-1){
-
+            string path=to_string(boardSize);
+            int parent=boardSize;
+            while(parent!=-1){
+               if(parent!=boardSize){
+                string str = to_string(parent)+" -> ";
+                path.insert(0,str);
+               }
+                
+                parent=parentof[parent];
+            }
+            cout<<path<<endl;
         }
         else{
             cout<<"No solution"<<endl;
