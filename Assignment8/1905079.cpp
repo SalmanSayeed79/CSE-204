@@ -44,7 +44,7 @@ int Partition(int array[], int start, int end, bool makeRandonPivot){
         int pivot_index = start + rand() % (end - start + 1);
         swap(array[end], array[pivot_index]);
     }
-    
+
     int pivot = array[end];
     int i = start - 1;
     for(int j = start; j < end; j++){
@@ -145,7 +145,7 @@ int main()
         }
         //Last option without comma
         cout<<generateReqTime(arraySizes[i],7)/1000<<endl;
- 
+
     }
     //cout << (double)generateReqTime(100000,4) / 1000 << endl;
     fclose(stdout);

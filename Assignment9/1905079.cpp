@@ -3,14 +3,17 @@
 
 using namespace std;
 
+/*Our plan is to
+    - Sort the array so that the last element becomes the highest priced element
+    - Traverse from the back and multiply currentMul with that price
+    - Print the result
+*/
 int main(){
-    /*Our plan is
-        - To sort the array so that the last element becomes the highest priced element
-        - We traverse from the back and multiply currentMul with that price
-    */
     int friendCount, plantCount;
     int plantPrices[10001]={0};
+    // Taking count
     cin>>plantCount>>friendCount;
+    // Taking the prices
     for(int i=0;i<plantCount;i++){
         cin>>plantPrices[i];
     }
@@ -27,7 +30,6 @@ int main(){
         }
         currentMul++;
     }
-
     cout<<minCost;
 
     return 0;
